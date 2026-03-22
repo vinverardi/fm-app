@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Future Message</title>
+  </head>
+  <body>
+    <h1>Gerät verbinden</h1>
+    <img src="{link_bild}">
+    <script>
+      async function warten() {
+        const antwort = await fetch("/verbinden/warten", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            link: "{link_text}"
+          })
+        });
+
+        window.location = "/verbinden/fertig";
+      }
+
+      warten();
+    </script>
+  </body>
+</html>

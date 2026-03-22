@@ -5,7 +5,10 @@
   },
   "description": "FutureMessage App",
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "axios": "^1.13.6",
+    "nodemon": "^3.1.14",
+    "qrcode": "^1.5.4",
+    "uuid": "^13.0.0"
   },
   "keywords": [],
   "license": "ISC",
