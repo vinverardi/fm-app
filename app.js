@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Gerät verbinden, Schritt 1.
 
@@ -58,3 +59,28 @@ app.get("/verbinden/fertig", async (req, res) => {
 });
 
 app.listen(7070);
+
+// Testseite anzeigen, Schritt 1.
+
+app.get("/test", (req, res) => {
+  res.sendFile(path.join(__dirname, "test.html"));
+});
+
+// Testseite anzeigen, Schritt 2.
+
+app.post("/test", async (req, res) => {
+  response = await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
+    id: uuidv4(),
+    jsonrpc: "2.0",
+    method: "send",
+    params: {
+      account: req.body.absender,
+      message: req.body.text,
+      recipients: [req.body.empfaenger]
+    }
+  });
+
+  console.log(response.data);
+
+  res.sendFile(path.join(__dirname, "test_fertig.html"));
+});
