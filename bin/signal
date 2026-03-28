@@ -26,6 +26,7 @@ else
     -d\
     --name "$docker_container"\
     -p "127.0.0.1:$port:$port"\
+    --restart unless-stopped\
     --tmpfs /tmp:exec\
     -v signal:/var/lib/signal-cli\
     $docker_image\
