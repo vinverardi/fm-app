@@ -2,6 +2,12 @@
 
 # Entwicklung
 
+Signal-Container starten:
+
+```
+$ bin/signal
+```
+
 App installieren:
 
 ```
@@ -21,6 +27,12 @@ Pakete installieren:
 ```
 # curl -fsSL https://deb.nodesource.com/setup_25.x | bash -
 # apt-get install -y caddy docker.io npm
+```
+
+Signal-Container starten:
+
+```
+$ bin/signal
 ```
 
 App installieren:
