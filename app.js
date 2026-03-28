@@ -58,8 +58,6 @@ app.get("/verbinden/fertig", async (req, res) => {
   res.sendFile(path.join(__dirname, "verbinden_fertig.html"));
 });
 
-app.listen(7070);
-
 // Testseite anzeigen, Schritt 1.
 
 app.get("/test", (req, res) => {
@@ -84,3 +82,5 @@ app.post("/test", async (req, res) => {
 
   res.sendFile(path.join(__dirname, "test_fertig.html"));
 });
+
+app.listen(7070);
