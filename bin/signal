@@ -1,0 +1,33 @@
+#! /bin/bash
+
+set -e
+
+print_usage() {
+  echo "Usage: $0"
+  exit 1
+}
+
+(( $# == 0 )) || print_usage
+
+docker_container="$(basename "$0")"
+docker_image=registry.gitlab.com/packaging/signal-cli/signal-cli-native:latest
+
+port=8080
+
+if docker container inspect "$docker_container" &> /dev/null
+then
+  echo 'Starting container ...'
+
+  docker start "$docker_container"
+else
+  echo 'Creating container ...'
+
+  docker run\
+    -d\
+    --name "$docker_container"\
+    -p "127.0.0.1:$port:$port"\
+    --tmpfs /tmp:exec\
+    -v signal:/var/lib/signal-cli\
+    $docker_image\
+    daemon --http 0.0.0.0:8080
+fi

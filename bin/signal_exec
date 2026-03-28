@@ -1,0 +1,14 @@
+#! /bin/bash
+
+set -e
+
+print_usage() {
+  echo "Usage: $0 {command}"
+  exit 1
+}
+
+(( $# > 0 )) || print_usage
+
+docker_container=signal
+
+docker exec -it "$docker_container" signal-cli "$@"

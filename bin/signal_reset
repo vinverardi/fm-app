@@ -1,0 +1,26 @@
+#! /bin/bash
+
+set -e
+
+print_usage() {
+  echo "Usage: $0"
+  exit 1
+}
+
+(( $# == 0 )) || print_usage
+
+docker_container=signal
+
+echo 'Stopping container ...'
+
+docker stop "$docker_container" || :
+
+echo 'Removing container ...'
+
+docker rm "$docker_container" || :
+
+echo 'Removing volume ...'
+
+docker volume rm "$docker_container" || :
+
+signal
