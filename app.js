@@ -11,8 +11,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const APP_BENUTZERNAME = "benutzername";
-const APP_PASSWORT = "password";
+require("dotenv").config();
+
+const APP_BENUTZERNAME = process.env.APP_BENUTZERNAME;
+const APP_PASSWORT = process.env.APP_PASSWORT;
 
 function anmeldung(req, res, next) {
   const benutzer = basicAuth(req);
