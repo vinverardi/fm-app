@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
 // Gerät verbinden, Schritt 1.
 
 app.get("/verbinden", async (req, res) => {
-  const antwort = await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "startLink"
@@ -65,7 +65,7 @@ app.get("/verbinden", async (req, res) => {
 app.post("/verbinden/warten", async (req, res) => {
   const { link } = req.body;
 
-  await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
+  await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "finishLink",
@@ -131,7 +131,7 @@ app.get("/test", (req, res) => {
 // Testseite anzeigen, Schritt 2.
 
 app.post("/test", async (req, res) => {
-  const response = await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
+  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "send",
