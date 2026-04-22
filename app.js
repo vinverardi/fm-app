@@ -84,6 +84,44 @@ app.get("/verbinden/fertig", async (req, res) => {
   res.sendFile(path.join(__dirname, "verbinden_fertig.html"));
 });
 
+// Nachricht erfassen, Schritt 1.
+
+app.get("/erfassen", (req, res) => {
+  res.sendFile(path.join(__dirname, "erfassen.html"));
+});
+
+// Nachricht erfassen, Schritt 2.
+
+app.post("/erfassen", async (req, res) => {
+  const { empfaenger, text, zeitpunkt } = req.body;
+
+  if (!empfaenger || !text || !zeitpunkt) {
+    return res.status(400).send("Bitte alle Felder ausfüllen!");
+  }
+
+  const nachricht = {
+    empfaenger,
+    text,
+    zeitpunkt
+  };
+
+  await fetch("http://localhost:7071/nachrichten", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(nachricht)
+  });
+
+  res.redirect("/erfassen/fertig");
+});
+
+// Nachricht erfassen, Schritt 3.
+
+app.get("/erfassen/fertig", (req, res) => {
+  res.sendFile(path.join(__dirname, "erfassen_fertig.html"));
+});
+
 // Testseite anzeigen, Schritt 1.
 
 app.get("/test", (req, res) => {
