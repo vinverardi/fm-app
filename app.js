@@ -4,11 +4,29 @@ const fs = require("fs");
 const path = require('path');
 const qrcode = require("qrcode");
 const { v4: uuidv4 } = require("uuid");
+const basicAuth = require("basic-auth");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+const APP_BENUTZERNAME = "benutzername";
+const APP_PASSWORT = "password";
+
+function anmeldung(req, res, next) {
+  const benutzer = basicAuth(req);
+
+  if (!benutzer || benutzer.name !== APP_BENUTZERNAME || benutzer.pass !== APP_PASSWORT) {
+    res.set("WWW-Authenticate", 'Basic realm="Privater Bereich"');
+
+    return res.status(401).send("Anmeldung erforderlich");
+  }
+
+  next();
+}
+
+app.use(anmeldung)
 
 // Gerät verbinden, Schritt 1.
 

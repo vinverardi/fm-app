@@ -6,6 +6,7 @@
   "description": "FutureMessage App",
   "devDependencies": {
     "axios": "^1.13.6",
+    "basic-auth": "^2.0.1",
     "nodemon": "^3.1.14",
     "qrcode": "^1.5.4",
     "uuid": "^13.0.0"
