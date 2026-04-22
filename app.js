@@ -147,4 +147,60 @@ app.post("/test", async (req, res) => {
   res.sendFile(path.join(__dirname, "test_fertig.html"));
 });
 
+// Nachrichten senden.
+
+async function loescheNachricht(nachricht) {
+  await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
+}
+
+async function sendeNachricht(absender, nachricht) {
+  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
+    id: uuidv4(),
+    jsonrpc: "2.0",
+    method: "send",
+    params: {
+      account: absender,
+      message: nachricht.text,
+      recipients: [nachricht.empfaenger]
+    }
+  });
+
+  console.log(response.data);
+}
+
+async function sendeNachrichten() {
+  try {
+    const absender = await waehleAbsender();
+
+    if (absender) {
+      const nachrichten = await axios.get("http://localhost:7071/nachrichten/pendent");
+
+      for (const nachricht of nachrichten.data) {
+          await sendeNachricht(absender, nachricht);
+          await loescheNachricht(nachricht);
+      }
+    }
+  } catch (err) {
+    console.error("Fehler aufgetreten:", err.message);
+  }
+}
+
+async function waehleAbsender() {
+  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
+    id: uuidv4(),
+    jsonrpc: "2.0",
+    method: "listAccounts"
+  });
+
+  console.log(response.data);
+
+  if (response.data.result) {
+    absender = response.data.result.at(-1);
+
+    return absender.number;
+  }
+}
+
+setInterval(sendeNachrichten, 10 * 1000);
+
 app.listen(7070, "localhost");
