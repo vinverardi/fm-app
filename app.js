@@ -67,7 +67,7 @@ app.get("/test", (req, res) => {
 // Testseite anzeigen, Schritt 2.
 
 app.post("/test", async (req, res) => {
-  response = await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
+  const response = await axios.post("http://127.0.0.1:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "send",
