@@ -30,6 +30,12 @@ function anmeldung(req, res, next) {
 
 app.use(anmeldung)
 
+// Startseite anzeigen.
+
+app.get("/", async (req, res) => {
+  res.sendFile(path.join(__dirname, "start.html"));
+});
+
 // Gerät verbinden, Schritt 1.
 
 app.get("/verbinden", async (req, res) => {
