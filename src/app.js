@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: true}));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 async function loescheNachricht(nachricht) {
+  console.log("lösche " + nachricht); // XXX
   await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
 }
 
@@ -83,7 +84,7 @@ app.use((req, res, next) => {
 
 // Startseite anzeigen.
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "start.html"));
 });
 
@@ -131,7 +132,7 @@ app.post("/verbinden/warten", async (req, res) => {
 
 // Gerät verbinden, Schritt 3.
 
-app.get("/verbinden-fertig", async (req, res) => {
+app.get("/verbinden-fertig", (req, res) => {
   res.sendFile(path.join(__dirname, "verbinden-fertig.html"));
 });
 
@@ -171,6 +172,53 @@ app.post("/erfassen", async (req, res) => {
 
 app.get("/erfassen-fertig", (req, res) => {
   res.sendFile(path.join(__dirname, "erfassen-fertig.html"));
+});
+
+// Nachrichten ansehen.
+
+app.get("/ansehen", async (req, res) => {
+  const nachrichten = await axios.get("http://localhost:7071/nachrichten");
+
+  var tabelle = "";
+
+  for (const nachricht of nachrichten.data) {
+    const loeschen = '<a class="loeschen" href="loeschen/' + nachricht.id + '">Löschen</a>'
+
+    tabelle += '<div class="tabellenzeile">';
+
+    tabelle += '<div class="tabellenspalte">' + nachricht.empfaenger + "</div>";
+    tabelle += '<div class="tabellenspalte">' + nachricht.zeitpunkt + "</div>";
+    tabelle += '<div class="tabellenspalte">' + nachricht.text + "</div>";
+    tabelle += '<div class="tabellenspalte">' + loeschen + "</div>";
+
+    tabelle += "</div>";
+  }
+
+  fs.readFile(path.join(__dirname, "ansehen.html"), "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send(err.message);
+    } else {
+      data = data.replace("{tabelle}", tabelle);
+
+      res.send(data);
+    }
+  });
+});
+
+// Nachricht löschen, Schritt 1.
+
+app.get("/loeschen/:id", async (req, res) => {
+  const nachricht = req.params.id;
+
+  await loescheNachricht({id: nachricht});
+
+  res.redirect("/loeschen-fertig");
+});
+
+// Nachricht löschen, Schritt 2.
+
+app.get("/loeschen-fertig", (req, res) => {
+  res.sendFile(path.join(__dirname, "loeschen-fertig.html"));
 });
 
 // Testseite anzeigen, Schritt 1.

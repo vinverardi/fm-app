@@ -1,0 +1,16 @@
+.tabelle {
+  display: table;
+}
+
+.tabellenkopf {
+  font-weight: bold;
+}
+
+.tabellenspalte {
+  display: table-cell;
+  padding: 4px;
+}
+
+.tabellenzeile {
+  display: table-row;
+}
