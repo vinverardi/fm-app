@@ -131,8 +131,8 @@ app.post("/verbinden/warten", async (req, res) => {
 
 // Gerät verbinden, Schritt 3.
 
-app.get("/verbinden/fertig", async (req, res) => {
-  res.sendFile(path.join(__dirname, "verbinden_fertig.html"));
+app.get("/verbinden-fertig", async (req, res) => {
+  res.sendFile(path.join(__dirname, "verbinden-fertig.html"));
 });
 
 // Nachricht erfassen, Schritt 1.
@@ -164,13 +164,13 @@ app.post("/erfassen", async (req, res) => {
     body: JSON.stringify(nachricht)
   });
 
-  res.redirect("/erfassen/fertig");
+  res.redirect("/erfassen-fertig");
 });
 
 // Nachricht erfassen, Schritt 3.
 
-app.get("/erfassen/fertig", (req, res) => {
-  res.sendFile(path.join(__dirname, "erfassen_fertig.html"));
+app.get("/erfassen-fertig", (req, res) => {
+  res.sendFile(path.join(__dirname, "erfassen-fertig.html"));
 });
 
 // Testseite anzeigen, Schritt 1.
@@ -195,7 +195,7 @@ app.post("/test", async (req, res) => {
 
   console.log(antwort.data);
 
-  res.sendFile(path.join(__dirname, "test_fertig.html"));
+  res.sendFile(path.join(__dirname, "test-fertig.html"));
 });
 
 // Nachrichten senden.
