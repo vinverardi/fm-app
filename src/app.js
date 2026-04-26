@@ -131,7 +131,7 @@ app.get("/test", (req, res) => {
 // Testseite anzeigen, Schritt 2.
 
 app.post("/test", async (req, res) => {
-  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "send",
@@ -142,7 +142,7 @@ app.post("/test", async (req, res) => {
     }
   });
 
-  console.log(response.data);
+  console.log(antwort.data);
 
   res.sendFile(path.join(__dirname, "test_fertig.html"));
 });
@@ -154,7 +154,7 @@ async function loescheNachricht(nachricht) {
 }
 
 async function sendeNachricht(absender, nachricht) {
-  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "send",
@@ -165,7 +165,7 @@ async function sendeNachricht(absender, nachricht) {
     }
   });
 
-  console.log(response.data);
+  console.log(antwort.data);
 }
 
 async function sendeNachrichten() {
@@ -186,16 +186,16 @@ async function sendeNachrichten() {
 }
 
 async function waehleAbsender() {
-  const response = await axios.post("http://localhost:8080/api/v1/rpc", {
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "listAccounts"
   });
 
-  console.log(response.data);
+  console.log(antwort.data);
 
-  if (response.data.result) {
-    absender = response.data.result.at(-1);
+  if (antwort.data.result) {
+    absender = antwort.data.result.at(-1);
 
     return absender.number;
   }
