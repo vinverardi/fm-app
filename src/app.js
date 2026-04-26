@@ -12,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 async function loescheNachricht(nachricht) {
   await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
@@ -67,7 +68,7 @@ async function waehleAbsender() {
 
 // Benutzer anmelden.
 
-function anmeldung(req, res, next) {
+app.use((req, res, next) => {
   const benutzer = basicAuth(req);
 
   if (!benutzer || benutzer.name !== process.env.APP_BENUTZERNAME || benutzer.pass !== process.env.APP_PASSWORT) {
@@ -77,9 +78,8 @@ function anmeldung(req, res, next) {
   }
 
   next();
-}
+});
 
-app.use(anmeldung)
 
 // Startseite anzeigen.
 
