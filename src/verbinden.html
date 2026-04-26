@@ -7,7 +7,13 @@
   </head>
   <body>
     <h1>Gerät verbinden</h1>
-    <img src="{link_bild}">
+
+    <div>
+      <img src="{link_bild}">
+    </div>
+
+    <a href="/">Zurück zur Startseite</a>
+
     <script>
       async function warten() {
         const antwort = await fetch("/verbinden/warten", {
