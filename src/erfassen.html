@@ -2,6 +2,7 @@
 
 <html lang="de">
   <head>
+    <link href="/public/tabelle.css" rel="stylesheet">
     <meta charset="utf-8">
     <title>Future Message</title>
   </head>
@@ -9,14 +10,24 @@
     <h1>Nachricht erfassen</h1>
 
     <form method="post">
-      <input name="empfaenger" placeholder="Empfänger" type="text">
+      <label for="empfaenger">Empfänger:</label>
+      <input name="empfaenger" type="text">
       <br>
-      <textarea name="text" cols="40" rows="10">
-      </textarea>
+
+      <label for="text">Text:</label>
+      <textarea name="text" cols="40" rows="10"></textarea>
       <br>
-      <input name="zeitpunkt" placeholder="Zeitpunkt" type="datetime-local">
+
+      <label for="datum">Datum:</label>
+      <input name="datum" type="date">
       <br>
-      <input type="submit">
+
+      <label for="zeit">Zeit:</label>
+      <input name="zeit" type="time">
+      <br>
+
+      <input type="submit" value="Erfassen">
+      <input type="reset" value="Zurücksetzen">
     </form>
 
     <a href="/">Zurück zur Startseite</a>

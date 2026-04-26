@@ -145,16 +145,16 @@ app.get("/erfassen", (req, res) => {
 // Nachricht erfassen, Schritt 2.
 
 app.post("/erfassen", async (req, res) => {
-  const { empfaenger, text, zeitpunkt } = req.body;
+  const { empfaenger, text, datum, zeit } = req.body;
 
-  if (!empfaenger || !text || !zeitpunkt) {
+  if (!empfaenger || !text || !datum || !zeit) {
     return res.status(400).send("Bitte alle Felder ausfüllen!");
   }
 
   const nachricht = {
     empfaenger,
     text,
-    zeitpunkt
+    zeitpunkt: `${datum}T${zeit}`
   };
 
   await fetch("http://localhost:7071/nachrichten", {
