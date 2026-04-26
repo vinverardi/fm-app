@@ -6,15 +6,12 @@ const qrcode = require("qrcode");
 const { v4: uuidv4 } = require("uuid");
 const basicAuth = require("basic-auth");
 
+require("dotenv").config();
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-require("dotenv").config();
-
-const APP_BENUTZERNAME = process.env.APP_BENUTZERNAME;
-const APP_PASSWORT = process.env.APP_PASSWORT;
 
 async function loescheNachricht(nachricht) {
   await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
@@ -73,7 +70,7 @@ async function waehleAbsender() {
 function anmeldung(req, res, next) {
   const benutzer = basicAuth(req);
 
-  if (!benutzer || benutzer.name !== APP_BENUTZERNAME || benutzer.pass !== APP_PASSWORT) {
+  if (!benutzer || benutzer.name !== process.env.APP_BENUTZERNAME || benutzer.pass !== process.env.APP_PASSWORT) {
     res.set("WWW-Authenticate", 'Basic realm="Privater Bereich"');
 
     return res.status(401).send("Anmeldung erforderlich");
