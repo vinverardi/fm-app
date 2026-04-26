@@ -5,18 +5,21 @@
 Signal-Container starten:
 
 ```
-$ bin/signal
+$ cd bin
+$ ./signal
 ```
 
 App installieren:
 
 ```
+$ cd src
 $ npm install
 ```
 
 App starten:
 
 ```
+$ cd src
 $ npm run dev
 ```
 
@@ -32,7 +35,8 @@ Pakete installieren:
 Signal-Container starten:
 
 ```
-$ bin/signal
+$ cd bin
+$ ./signal
 ```
 
 App installieren:
@@ -40,7 +44,7 @@ App installieren:
 ```
 # cd
 # git clone git@github.com:vinverardi/fm-app.git
-# cd fm-app
+# cd fm-app/src
 # npm i
 ```
 
@@ -58,7 +62,7 @@ Restart=on-failure
 RestartSec=5
 Type=simple
 User=root
-WorkingDirectory=/root/fm-app
+WorkingDirectory=/root/fm-app/src
 
 [Unit]
 After=network.target
