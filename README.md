@@ -5,21 +5,31 @@
 Signal-Container starten:
 
 ```
-$ cd bin
+$ cd ~/fm-app/bin
 $ ./signal
 ```
 
 App installieren:
 
 ```
-$ cd src
+$ cd ~/fm-app/src
 $ npm install
+```
+
+App konfigurieren:
+
+```
+$ cd ~/fm-app/src
+$ cat > .env
+APP_BENUTZERNAME=···
+APP_PASSWORT=···
+^D
 ```
 
 App starten:
 
 ```
-$ cd src
+$ cd ~/fm-app/src
 $ npm run dev
 ```
 
@@ -35,7 +45,7 @@ Pakete installieren:
 Signal-Container starten:
 
 ```
-$ cd bin
+$ cd ~/fm-app/bin
 $ ./signal
 ```
 
@@ -44,8 +54,19 @@ App installieren:
 ```
 # cd
 # git clone git@github.com:vinverardi/fm-app.git
-# cd fm-app/src
+
+# cd ~/fm-app/src
 # npm i
+```
+
+App konfigurieren:
+
+```
+$ cd ~/fm-app/src
+$ cat > .env
+APP_BENUTZERNAME=···
+APP_PASSWORT=···
+^D
 ```
 
 App als Hintergrunddienst hinzufügen:
