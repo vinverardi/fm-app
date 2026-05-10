@@ -3,15 +3,59 @@
 <html lang="de">
   <head>
     <link href="/public/css/simple.min.css" rel="stylesheet">
+    <link href="/public/css/fm-navigation.css" rel="stylesheet">
+    <link href="/public/css/fm-karten.css" rel="stylesheet">
+    <link href="/public/css/fm-schriftart.css" rel="stylesheet">
+    <link href="/public/css/fm-variablen.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect" >
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Future Message</title>
   </head>
   <body>
-    <h1>Willkommen</h1>
-    <ul>
-      <li><a href="/verbinden">Neues Gerät verbinden</a>
-      <li><a href="/erfassen">Neue Nachricht erfassen</a>
-      <li><a href="/ansehen">Geplante Nachrichten ansehen</a>
+    <div class="navigation-oben">
+      <h1>Future Message</h1>
+      <img class="logo" src="/public/svg/logo.svg">
+      <h2>Heute schreiben - morgen senden</h2>
+    </div>
+
+    <ul class="karten-liste">
+      <li>
+        <div>
+          <a href="/verbinden">Gerät verbinden</a>
+        </div>
+        <div>
+          <img class="symbol" src="/public/svg/symbol-geraet-verbinden.svg">
+        </div>
+        <div>
+          Verbinde dein Gerät über einen QR-Code
+        </div>
+      </li>
+      <li>
+        <div>
+          <a href="/erfassen">Nachricht erfassen</a>
+        </div>
+        <div>
+          <img class="symbol" src="/public/svg/symbol-nachricht-erfassen.svg">
+        </div>
+        <div>
+          Schreibe eine Nachricht für die Zukunft
+        </div>
+      </li>
+      <li>
+        <div>
+          <a href="/ansehen">Nachrichten ansehen</a>
+        </div>
+        <div>
+          <img class="symbol" src="/public/svg/symbol-nachrichten-ansehen.svg">
+        </div>
+        <div>
+          Verwalte deine geplanten Nachrichten
+        </div>
+      </li>
     </ul>
+
+    <script src="/public/js/fm-start.js"></script>
   </body>
 </html>

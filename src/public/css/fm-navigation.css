@@ -1,0 +1,32 @@
+.navigation-oben {
+  background: var(--bg) url("/public/jpg/hintergrund.jpg");
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  grid-column: 1/-1;
+  margin-bottom: 2em;
+  padding: 2em;
+  text-align: center;
+}
+
+.navigation-oben h1 {
+  font-weight: normal;
+  font-size: 40px;
+  margin: 0;
+  max-width: none;
+}
+
+.navigation-oben h2 {
+  font-weight: normal;
+  font-size: 25px;
+  margin: 0;
+}
+
+.navigation-unten {
+  margin-top: 1em;
+}
+
+.logo {
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+  width: 3em;
+}

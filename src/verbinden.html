@@ -3,17 +3,34 @@
 <html lang="de">
   <head>
     <link href="/public/css/simple.min.css" rel="stylesheet">
+    <link href="/public/css/fm-karten.css" rel="stylesheet">
+    <link href="/public/css/fm-navigation.css" rel="stylesheet">
+    <link href="/public/css/fm-variablen.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect" >
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Future Message</title>
   </head>
   <body>
-    <h1>Gerät verbinden</h1>
-
-    <div>
-      <img src="{link_bild}">
+    <div class="navigation-oben">
+      <h1>Gerät verbinden</h1>
     </div>
 
-    <a href="/">Zurück zur Startseite</a>
+    <ul class="karten-liste">
+      <li>
+        <div>
+          Bitte scanne den QR-Code:
+        </div>
+        <div>
+          <img class="qrcode" src="{link_bild}">
+        </div>
+      </li>
+    </ul>
+
+    <div class="navigation-unten">
+      <a class="center" href="/">Zurück zur Startseite</a>
+    </div>
 
     <script>
       async function warten() {

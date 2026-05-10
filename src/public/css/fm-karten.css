@@ -1,0 +1,35 @@
+.karten-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  list-style: none;
+  padding: 0;
+}
+
+.karten-liste li {
+  flex: 1 1 200px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--standard-border-radius);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 1em;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.karten-liste li:hover {
+  transform: translateY(-0.2em);
+}
+
+.qrcode {
+  border-radius: 0;
+  margin: 1em;
+  width: 12em;
+}
+
+.symbol {
+  margin: 1em;
+  width: 2em;
+}

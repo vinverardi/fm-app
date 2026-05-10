@@ -8,7 +8,7 @@
 }
 
 #kontakte-fenster {
-  background: var(--bg);
+  background: white;
   border: 1px solid var(--border);
   border-radius: var(--standard-border-radius);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
