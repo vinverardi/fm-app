@@ -27,7 +27,11 @@
           })
         });
 
-        window.location = "/verbinden-fertig";
+        if (antwort.ok) {
+          window.location = "/verbinden-erfolgreich";
+        } else {
+          window.location = "/verbinden-erfolglos";
+        }
       }
 
       warten();

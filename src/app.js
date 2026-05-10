@@ -134,13 +134,21 @@ app.post("/verbinden/warten", async (req, res) => {
 
   console.log(antwort.data);
 
-  res.json({ status: "OK" });
+  if (antwort.data.error) {
+    res.status(500).json({ status: "Fehler" });
+  } else {
+    res.json({ status: "OK" });
+  }
 });
 
 // Gerät verbinden, Schritt 3.
 
-app.get("/verbinden-fertig", (req, res) => {
-  res.sendFile(path.join(__dirname, "verbinden-fertig.html"));
+app.get("/verbinden-erfolgreich", (req, res) => {
+  res.sendFile(path.join(__dirname, "verbinden-erfolgreich.html"));
+});
+
+app.get("/verbinden-erfolglos", (req, res) => {
+  res.sendFile(path.join(__dirname, "verbinden-erfolglos.html"));
 });
 
 // Kontakte abfragen.
@@ -202,13 +210,13 @@ app.post("/erfassen", async (req, res) => {
     body: JSON.stringify(nachricht)
   });
 
-  res.redirect("/erfassen-fertig");
+  res.redirect("/erfassen-erfolgreich");
 });
 
 // Nachricht erfassen, Schritt 3.
 
-app.get("/erfassen-fertig", (req, res) => {
-  res.sendFile(path.join(__dirname, "erfassen-fertig.html"));
+app.get("/erfassen-erfolgreich", (req, res) => {
+  res.sendFile(path.join(__dirname, "erfassen-erfolgreich.html"));
 });
 
 // Nachrichten ansehen.
@@ -249,13 +257,13 @@ app.get("/loeschen/:id", async (req, res) => {
 
   await loescheNachricht({id: nachricht});
 
-  res.redirect("/loeschen-fertig");
+  res.redirect("/loeschen-erfolgreich");
 });
 
 // Nachricht löschen, Schritt 2.
 
-app.get("/loeschen-fertig", (req, res) => {
-  res.sendFile(path.join(__dirname, "loeschen-fertig.html"));
+app.get("/loeschen-erfolgreich", (req, res) => {
+  res.sendFile(path.join(__dirname, "loeschen-erfolgreich.html"));
 });
 
 // Testseite anzeigen, Schritt 1.
@@ -280,7 +288,7 @@ app.post("/test", async (req, res) => {
 
   console.log(antwort.data);
 
-  res.sendFile(path.join(__dirname, "test-fertig.html"));
+  res.sendFile(path.join(__dirname, "test-erfolgreich.html"));
 });
 
 // Nachrichten senden.
