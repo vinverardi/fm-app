@@ -1,0 +1,36 @@
+.hidden {
+  display: none;
+}
+
+#kontakte-eingabe {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#kontakte-fenster {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--standard-border-radius);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5em;
+  position: absolute;
+  width: 600px;
+}
+
+#kontakte-liste {
+  list-style: none;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+}
+
+#kontakte-liste li {
+  border-radius: var(--standard-border-radius);
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+#kontakte-liste li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

@@ -3,6 +3,7 @@
 <html lang="de">
   <head>
     <link href="/public/css/simple.min.css" rel="stylesheet">
+    <link href="/public/css/fm-kontakte.css" rel="stylesheet">
     <meta charset="utf-8">
     <title>Future Message</title>
   </head>
@@ -11,7 +12,8 @@
 
     <form method="post">
       <label for="empfaenger">Empfänger:</label>
-      <input name="empfaenger" type="text">
+      <input id="empfaenger-eingabe" name="empfaenger" type="text">
+      <input id="kontakte-schalter" type="button" value="..."">
       <br>
 
       <label for="text">Text:</label>
@@ -31,5 +33,12 @@
     </form>
 
     <a href="/">Zurück zur Startseite</a>
+
+    <div class="hidden" id="kontakte-fenster">
+      <input id="kontakte-eingabe" placeholder="Kontakt suchen ..." type="text"/>
+      <ul id="kontakte-liste"></ul>
+    </div>
+
+    <script src="/public/js/fm-kontakte.js"></script>
   </body>
 </html>

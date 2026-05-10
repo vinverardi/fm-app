@@ -138,6 +138,34 @@ app.get("/verbinden-fertig", (req, res) => {
   res.sendFile(path.join(__dirname, "verbinden-fertig.html"));
 });
 
+// Kontakte abfragen.
+
+app.get("/kontakte", async (req, res) => {
+  const absender = await waehleAbsender();
+
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
+    id: uuidv4(),
+    jsonrpc: "2.0",
+    method: "listContacts",
+    params: {
+      account: absender,
+    }
+  });
+
+  const kontakte = [];
+
+  for (const contact of antwort.data.result) {
+    if (contact.name && contact.number) {
+      kontakte.push({
+        "name": contact.name,
+        "nummer": contact.number
+      });
+    }
+  }
+
+  res.json(kontakte);
+});
+
 // Nachricht erfassen, Schritt 1.
 
 app.get("/erfassen", (req, res) => {
