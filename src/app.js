@@ -15,8 +15,9 @@ app.use(express.urlencoded({extended: true}));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 async function loescheNachricht(nachricht) {
-  console.log("lösche " + nachricht); // XXX
-  await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
+  const antwort = await axios.delete("http://localhost:7071/nachrichten/" + nachricht.id);
+
+  console.log(antwort.data);
 }
 
 async function sendeNachricht(absender, nachricht) {
@@ -97,6 +98,8 @@ app.get("/verbinden", async (req, res) => {
     method: "startLink"
   });
 
+  console.log(antwort.data);
+
   const link_text = antwort.data.result.deviceLinkUri;
   const link_bild = await qrcode.toDataURL(link_text, {
     margin: 0
@@ -119,7 +122,7 @@ app.get("/verbinden", async (req, res) => {
 app.post("/verbinden/warten", async (req, res) => {
   const { link } = req.body;
 
-  await axios.post("http://localhost:8080/api/v1/rpc", {
+  const antwort = await axios.post("http://localhost:8080/api/v1/rpc", {
     id: uuidv4(),
     jsonrpc: "2.0",
     method: "finishLink",
@@ -128,6 +131,8 @@ app.post("/verbinden/warten", async (req, res) => {
       deviceName: "FutureMessage"
     }
   });
+
+  console.log(antwort.data);
 
   res.json({ status: "OK" });
 });
@@ -151,6 +156,8 @@ app.get("/kontakte", async (req, res) => {
       account: absender,
     }
   });
+
+  console.log(antwort.data);
 
   const kontakte = [];
 
