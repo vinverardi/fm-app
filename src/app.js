@@ -98,7 +98,9 @@ app.get("/verbinden", async (req, res) => {
   });
 
   const link_text = antwort.data.result.deviceLinkUri;
-  const link_bild = await qrcode.toDataURL(link_text);
+  const link_bild = await qrcode.toDataURL(link_text, {
+    margin: 0
+  });
 
   fs.readFile(path.join(__dirname, "verbinden.html"), "utf8", (err, data) => {
     if (err) {
