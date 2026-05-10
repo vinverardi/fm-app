@@ -224,6 +224,11 @@ app.get("/erfassen-erfolgreich", (req, res) => {
 app.get("/ansehen", async (req, res) => {
   const nachrichten = await axios.get("http://localhost:7071/nachrichten");
 
+  if (!nachrichten.data.length) {
+    res.sendFile(path.join(__dirname, "ansehen-leer.html"));
+    return;
+  }
+
   var tabelle = "";
 
   for (const nachricht of nachrichten.data) {
@@ -244,7 +249,7 @@ app.get("/ansehen", async (req, res) => {
       res.status(500).send(err.message);
     } else {
       data = data.replace("{tabelle}", tabelle);
-
+      
       res.send(data);
     }
   });
